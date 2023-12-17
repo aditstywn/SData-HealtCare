@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,23 +15,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.auth.login');
-})->name('login');
-Route::get('/register', function () {
+    return view('welcome');
+});
+Route::get('/register-template', function () {
     return view('pages.auth.register');
-})->name('register');
-Route::get('/home', function () {
-    return view('pages.dashboard');
-})->name('home');
-Route::get('/input', function () {
-    return view('pages.input_pasien');
-})->name('input');
-Route::get('/request', function () {
-    return view('pages.request_pasien');
-})->name('request');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// temp
 Route::get('/detail', function () {
     return view('pages.detail_request');
 })->name('detail');
 Route::get('/update', function () {
     return view('pages.update_user');
 })->name('update');
+
+require __DIR__.'/auth.php';
