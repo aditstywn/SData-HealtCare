@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">S-Data HealtCare</a>
+            <a href="index.html">S-Data HealthCare</a>
         </div>
 
 
@@ -11,6 +11,11 @@
                     <i class="fas fa-rocket"></i>Home
                 </a>
             </div>
+            <div class="hide-sidebar-mini  mb-2">
+                <a href="{{ route('request_expired') }}" class="btn btn-primary btn-lg btn-block btn-icon-split">
+                    <i class="fas fa-rocket"></i>Request Data Expired
+                </a>
+            </div>
             <div class="hide-sidebar-mini mb-2">
                 <a href="{{ route('input') }}"class="btn btn-primary btn-lg btn-block btn-icon-split">
                     <i class="fas fa-rocket"></i>Input Pasien
@@ -18,7 +23,7 @@
             </div>
             <div class="hide-sidebar-mini mb-2">
                 <a href="{{ route('request') }}" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                    <i class="fas fa-rocket"></i> Request Data
+                    <i class="fas fa-rocket"></i> Request Data Pasien
                 </a>
             </div>
         </div>

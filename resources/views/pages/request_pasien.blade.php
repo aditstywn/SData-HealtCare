@@ -61,7 +61,8 @@
 
                                                 <td>Rs. Adit Sehat Selalu</td>
                                                 <td>32-02-2023</td>
-                                                <td><a href="{{ route('detail') }}" class="btn btn-primary">Detail</a></td>
+                                                <td><a href="{{ route('detail_request') }}"
+                                                        class="btn btn-primary">Detail</a></td>
                                             </tr>
 
 

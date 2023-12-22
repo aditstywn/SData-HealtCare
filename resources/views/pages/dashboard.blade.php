@@ -12,7 +12,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Dashboard Data Pasien</h1>
+                <h1>Home</h1>
             </div>
             <div class="section-body">
                 <div class="row">
@@ -24,6 +24,36 @@
                             <div class="card-wrap">
                                 <div class="card-header">
                                     <h4>Total Pasien</h4>
+                                </div>
+                                <div class="card-body">
+                                    10
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-primary">
+                                <i class="far fa-user"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Data Available</h4>
+                                </div>
+                                <div class="card-body">
+                                    10
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-primary">
+                                <i class="far fa-user"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Data Request</h4>
                                 </div>
                                 <div class="card-body">
                                     10
@@ -49,55 +79,18 @@
                     </div>
                 </div>
                 <br>
-                {{-- <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Data Pasien</h4>
-                            </div>
-                            <div class="card-body p-0">
-                                <div class="table-responsive">
-                                    <table class="table-striped table" id="sortable-table">
-                                        <thead>
-                                            <tr>
 
-                                                <th>Nama </th>
-                                                <th>Nik</th>
-                                                <th>Tanggal Lahir</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Rs. Adit Sehat Selalu</td>
-                                                <td>0090202020</td>
-                                                <td>32-02-2023</td>
-                                                <td>
-                                                    <a href="{{ route('detail') }}" class="btn btn-info">Detail</a>
-                                                    <a href="#" class="btn btn-success">Tambah</a>
-                                                </td>
-                                            </tr>
-
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
                 <div class="table-responsive">
                     <table class="table-striped table">
                         <tr>
 
                             <th>Nama </th>
-                            <th>Nik</th>
+                            <th>NIK</th>
                             <th>Tanggal Lahir</th>
                             <th>Action</th>
                         </tr>
                         <tr>
-                            <td>Rs. Adit Sehat Selalu</td>
+                            <td>Adit</td>
                             <td>0090202020</td>
                             <td>32-02-2023</td>
                             <td>
@@ -106,7 +99,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Rs. Adit Sehat Selalu</td>
+                            <td>Adit</td>
                             <td>0090202020</td>
                             <td>32-02-2023</td>
                             <td>
@@ -115,7 +108,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Rs. Adit Sehat Selalu</td>
+                            <td>Adit</td>
                             <td>0090202020</td>
                             <td>32-02-2023</td>
                             <td>
@@ -124,7 +117,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Rs. Adit Sehat Selalu</td>
+                            <td>Adit</td>
                             <td>0090202020</td>
                             <td>32-02-2023</td>
                             <td>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Request Pasien')
+@section('title', 'Detail Pasien')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -57,32 +57,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row ">
-                    <div class="col-md">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Perpanjang Masa Berlaku Data</h4>
-                            </div>
-                            <div class="card-body">
-                                <form action="">
-                                    <div class="form-group">
-                                        <input type="Date"
-                                            class="form-control @error('nama')
-                                        is-invalid
-                                    @enderror"
-                                            name="nama">
-                                        @error('nama')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                    <button class="btn btn-success">Request</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
                 <div class="card">
                     <div class="card-header">

@@ -41,7 +41,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Nik</label>
+                                <label>NIK</label>
                                 <input type="nik"
                                     class="form-control @error('nik')
                                 is-invalid
@@ -54,7 +54,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>alamat</label>
+                                <label>Alamat</label>
                                 <input type="alamat"
                                     class="form-control @error('alamat')
                                 is-invalid
