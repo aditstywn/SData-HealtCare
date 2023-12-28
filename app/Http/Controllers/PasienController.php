@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pasien;
+use App\Models\RekamMedis;
 use Illuminate\Http\Request;
 
 class PasienController extends Controller
@@ -39,7 +40,8 @@ class PasienController extends Controller
     public function show(Pasien $pasien)
     {
         return view('pages.detail_pasien', [
-            'post' => $pasien,
+            'pasien' => $pasien,
+            // 'rekamMedis' => RekamMedis::where('pasien_id', $pasien->id)->get(),
         ]);
     }
 

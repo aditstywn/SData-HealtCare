@@ -12,6 +12,8 @@ class Pasien extends Model
     protected $guarded = [
         'id',
     ];
+    protected $with = ['rekamMedis'];
+
 
     public function rekamMedis()
     {

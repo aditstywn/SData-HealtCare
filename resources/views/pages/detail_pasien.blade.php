@@ -41,12 +41,12 @@
                                         <tbody>
                                             <tr>
 
-                                                <td>{{ $post->nama }}</td>
-                                                <td>{{ $post->nik }}</td>
-                                                <td>{{ $post->alamat }}</td>
-                                                <td>{{ $post->jenis_kelamin }}</td>
-                                                <td>{{ $post->tanggal_lahir }}</td>
-                                                <td>{{ $post->golongan_darah }}</td>
+                                                <td>{{ $pasien->nama }}</td>
+                                                <td>{{ $pasien->nik }}</td>
+                                                <td>{{ $pasien->alamat }}</td>
+                                                <td>{{ $pasien->jenis_kelamin }}</td>
+                                                <td>{{ $pasien->tanggal_lahir }}</td>
+                                                <td>{{ $pasien->golongan_darah }}</td>
 
                                             </tr>
                                         </tbody>
@@ -61,22 +61,22 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Riwayat Penyakit</h4>
-
+                        <a href="" class="btn btn-success ml-auto">Tambah Rm</a>
                     </div>
-                    <div class="card-body">
-                        <div class="row ">
-                            <div class="col-md-4 m-4">
-                                <img src="{{ asset('img/example-image.jpg') }}" width="400" alt="">
-                            </div>
-                            <div class="col-md-4 m-4">
-                                <h5>Deskripsi</h5>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse quasi cumque, placeat
-                                    quidem
-                                    at, quas libero nihil facilis reprehenderit ratione rem praesentium repudiandae fugit
-                                    obcaecati vel laudantium voluptatem fuga. Molestias?</p>
+
+                    @foreach ($pasien->rekamMedis as $rm)
+                        <div class="card-body">
+                            <div class="row ">
+                                <div class="col-md-4 m-4">
+                                    <img src="{{ $rm->image }}" width="400" alt="">
+                                </div>
+                                <div class="col-md-4 m-4">
+                                    <h5>Deskripsi</h5>
+                                    <p>{{ $rm->deskripsi }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
 
             </div>

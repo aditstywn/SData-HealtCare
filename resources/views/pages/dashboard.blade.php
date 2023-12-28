@@ -96,7 +96,6 @@
                                 <td>{{ $pasien->tanggal_lahir }}</td>
                                 <td>
                                     <a href="{{ route('pasien.show', $pasien->id) }}" class="btn btn-info">Detail</a>
-                                    <a href="{{ route('pasien.edit', $pasien->id) }}" class="btn btn-success">Tambah</a>
                                 </td>
                             </tr>
                         @endforeach
