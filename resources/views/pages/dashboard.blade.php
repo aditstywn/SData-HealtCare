@@ -89,71 +89,22 @@
                             <th>Tanggal Lahir</th>
                             <th>Action</th>
                         </tr>
-                        <tr>
-                            <td>Adit</td>
-                            <td>0090202020</td>
-                            <td>32-02-2023</td>
-                            <td>
-                                <a href="{{ route('detail') }}" class="btn btn-info">Detail</a>
-                                <a href="{{ route('update') }}" class="btn btn-success">Tambah</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Adit</td>
-                            <td>0090202020</td>
-                            <td>32-02-2023</td>
-                            <td>
-                                <a href="{{ route('detail') }}" class="btn btn-info">Detail</a>
-                                <a href="{{ route('update') }}" class="btn btn-success">Tambah</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Adit</td>
-                            <td>0090202020</td>
-                            <td>32-02-2023</td>
-                            <td>
-                                <a href="{{ route('detail') }}" class="btn btn-info">Detail</a>
-                                <a href="{{ route('update') }}" class="btn btn-success">Tambah</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Adit</td>
-                            <td>0090202020</td>
-                            <td>32-02-2023</td>
-                            <td>
-                                <a href="{{ route('detail') }}" class="btn btn-info">Detail</a>
-                                <a href="{{ route('update') }}" class="btn btn-success">Tambah</a>
-                            </td>
-                        </tr>
+                        @foreach ($pasiens as $pasien)
+                            <tr>
+                                <td>{{ $pasien->nama }}</td>
+                                <td>{{ $pasien->nik }}</td>
+                                <td>{{ $pasien->tanggal_lahir }}</td>
+                                <td>
+                                    <a href="{{ route('pasien.show', $pasien->id) }}" class="btn btn-info">Detail</a>
+                                    <a href="{{ route('pasien.edit', $pasien->id) }}" class="btn btn-success">Tambah</a>
+                                </td>
+                            </tr>
+                        @endforeach
+
                     </table>
                 </div>
-                <div class="float-right">
-                    <nav>
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+
+                {{ $pasiens->links() }}
             </div>
 
 

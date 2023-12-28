@@ -41,14 +41,13 @@
                                         <tbody>
                                             <tr>
 
-                                                <td>Adit</td>
-                                                <td>826292</td>
-                                                <td>Batang</td>
-                                                <td>
-                                                    Laki-Laki
-                                                </td>
-                                                <td>30-13-2002</td>
-                                                <td>A</td>
+                                                <td>{{ $post->nama }}</td>
+                                                <td>{{ $post->nik }}</td>
+                                                <td>{{ $post->alamat }}</td>
+                                                <td>{{ $post->jenis_kelamin }}</td>
+                                                <td>{{ $post->tanggal_lahir }}</td>
+                                                <td>{{ $post->golongan_darah }}</td>
+
                                             </tr>
                                         </tbody>
                                     </table>
