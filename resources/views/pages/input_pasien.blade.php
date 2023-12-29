@@ -21,7 +21,7 @@
 
             <div class="section-body">
                 <div class="card">
-                    <form action="" method="POST">
+                    <form action="{{ route('pasien.store') }}" method="POST">
                         @csrf
                         <div class="card-header">
                             <h4>Input Data Pasien</h4>
@@ -33,7 +33,7 @@
                                     class="form-control @error('nama')
                                 is-invalid
                             @enderror"
-                                    name="nama">
+                                    name="nama" value="{{ old('nama') }}">
                                 @error('nama')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -46,7 +46,7 @@
                                     class="form-control @error('nik')
                                 is-invalid
                                 @enderror"
-                                    name="nik">
+                                    name="nik" value="{{ old('nik') }}">
                                 @error('nik')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -59,7 +59,7 @@
                                     class="form-control @error('alamat')
                                 is-invalid
                                 @enderror"
-                                    name="alamat">
+                                    name="alamat" value="{{ old('alamat') }}">
                                 @error('alamat')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -88,11 +88,11 @@
 
                             <div class="form-group">
                                 <label>Tanggal Lahir</label>
-                                <input type="text"
+                                <input type="date"
                                     class="form-control datepicker @error('tanggal_lahir')
                                 is-invalid
                                 @enderror"
-                                    name="tanggal_lahir">
+                                    name="tanggal_lahir" value="{{ old('tanggal_lahir') }}">
                                 @error('tanggal_lahir')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -104,20 +104,23 @@
                                 <label class="form-label">Golongan Darah</label>
                                 <div class="selectgroup w-100">
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="value" value="A" class="selectgroup-input"
+                                        <input type="radio" name="golongan_darah" value="A" class="selectgroup-input"
                                             checked="">
                                         <span class="selectgroup-button">A</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="value" value="B" class="selectgroup-input">
+                                        <input type="radio" name="golongan_darah" value="B"
+                                            class="selectgroup-input">
                                         <span class="selectgroup-button">B</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="value" value="AB" class="selectgroup-input">
+                                        <input type="radio" name="golongan_darah" value="AB"
+                                            class="selectgroup-input">
                                         <span class="selectgroup-button">AB</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="value" value="O" class="selectgroup-input">
+                                        <input type="radio" name="golongan_darah" value="O"
+                                            class="selectgroup-input">
                                         <span class="selectgroup-button">O</span>
                                     </label>
                                 </div>

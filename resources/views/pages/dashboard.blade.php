@@ -26,7 +26,8 @@
                                     <h4>Total Pasien</h4>
                                 </div>
                                 <div class="card-body">
-                                    10
+
+                                    {{ auth()->user()->pasien()->count() }}
                                 </div>
                             </div>
                         </div>
@@ -38,37 +39,25 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>Data Available</h4>
+                                    <h4>Total Rekam Medis</h4>
                                 </div>
                                 <div class="card-body">
-                                    10
+
+                                    {{ auth()->user()->rekamMedis()->count() }}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-primary">
-                                <i class="far fa-user"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Data Request</h4>
-                                </div>
-                                <div class="card-body">
-                                    10
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
 
                 <div class="row ">
                     <div class="col-8 ">
                         <div class="card-header-action">
-                            <form>
+                            <form action="{{ route('pasien.index') }}">
+                                {{-- @csrf --}}
                                 <div class="input-group">
-                                    <input type="text" class="form-control " placeholder="Search NIK">
+                                    <input type="text" class="form-control " placeholder="Search NIK" name="nik">
                                     <div class="input-group-btn p-1">
                                         <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                     </div>

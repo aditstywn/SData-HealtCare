@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\RekamMedisController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,11 +17,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.auth.login');
-})->name('login');
+});
 
-Route::get('/register', function () {
-    return view('pages.auth.register');
-})->name('register');
+Route::middleware(['auth'])->group(function () {
+    Route::get('home', function () {
+        return redirect()->route('pasien.index');
+    });
+
+    Route::resource('/pasien', PasienController::class);
+    Route::resource('/rekam-medis', RekamMedisController::class);
+});
 
 Route::get('/request', function () {
     return view('pages.request_pasien');
@@ -33,6 +39,10 @@ Route::get('/request-expired', function () {
 Route::get('/detail-request-pasien', function () {
     return view('pages.detail_request');
 })->name('detail_request');
+// Route::get('/register', function () {
+//     return view('pages.auth.register');
+// })->name('register');
+
 
 // Route::get('/home', function () {
 //     return view('pages.dashboard');
@@ -52,4 +62,5 @@ Route::get('/detail-request-pasien', function () {
 //     return view('pages.update_user');
 // });
 
-Route::resource('/pasien', PasienController::class);
+// Route::resource('/pasien', PasienController::class);
+// Route::resource('/rekam-medis', RekamMedisController::class);

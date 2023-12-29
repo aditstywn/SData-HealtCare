@@ -19,8 +19,9 @@ class RekamMedisFactory extends Factory
         return [
             'deskripsi' => $this->faker->text(),
             'tanggal_periksa' => $this->faker->date('Y-m-d'),
-            'image' => $this->faker->imageUrl(),
-            'pasien_id' => mt_rand(1, 3),
+            'image' => base64_encode(file_get_contents($this->faker->imageUrl())),
+            'pasien_id' => mt_rand(1, 10),
+            'user_id' => mt_rand(1, 3),
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pasien;
 use App\Models\RekamMedis;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PasienController extends Controller
 {
@@ -13,8 +14,26 @@ class PasienController extends Controller
      */
     public function index()
     {
+
+        // request('nik');
+        // $pasiens = Pasien::where('user_id', auth()->user()->id)->latest()->paginate(10);
+        // return view('pages.dashboard', [
+        //     // 'pasiens' => Pasien::latest()->paginate(10),
+        //     'pasiens' => $pasiens,
+        // ]);
+
+        $searchNik = request('nik');
+
+        $pasiens = Pasien::where('user_id', auth()->user()->id)
+            ->when($searchNik, function ($query) use ($searchNik) {
+                return $query->where('nik', 'like', '%' . $searchNik . '%');
+            })
+            ->latest()
+            ->paginate(10);
+
+
         return view('pages.dashboard', [
-            'pasiens' => Pasien::paginate(10),
+            'pasiens' => $pasiens,
         ]);
     }
 
@@ -31,7 +50,19 @@ class PasienController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'nama' => 'required|max:100',
+            'nik' => 'required',
+            'alamat' => 'required',
+            'jenis_kelamin' => 'required',
+            'tanggal_lahir' => 'required',
+            'golongan_darah' => 'required'
+        ]);
+
+        $validate['user_id'] = auth()->user()->id;
+
+        Pasien::create($validate);
+        return redirect()->route('pasien.index')->with('success', 'Create Pasien Berhasil');
     }
 
     /**
@@ -39,9 +70,11 @@ class PasienController extends Controller
      */
     public function show(Pasien $pasien)
     {
+
+        $pasien->rekamMedis = $pasien->rekamMedis->where('user_id', Auth::id());
+
         return view('pages.detail_pasien', [
             'pasien' => $pasien,
-            // 'rekamMedis' => RekamMedis::where('pasien_id', $pasien->id)->get(),
         ]);
     }
 
