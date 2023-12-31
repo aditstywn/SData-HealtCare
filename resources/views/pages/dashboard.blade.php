@@ -15,7 +15,7 @@
                 <h1>Home</h1>
             </div>
             <div class="section-body">
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-primary">
@@ -34,8 +34,8 @@
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                         <div class="card card-statistic-1">
-                            <div class="card-icon bg-primary">
-                                <i class="far fa-user"></i>
+                            <div class="card-icon bg-warning">
+                                <i class="far fa-file"></i>
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
@@ -51,7 +51,9 @@
 
                 </div>
 
-                <div class="row ">
+
+
+                <div class="row justify-content-center">
                     <div class="col-8 ">
                         <div class="card-header-action">
                             <form action="{{ route('pasien.index') }}">
@@ -72,7 +74,7 @@
                 <div class="table-responsive">
                     <table class="table-striped table">
                         <tr>
-
+                            <th>No.</th>
                             <th>Nama </th>
                             <th>NIK</th>
                             <th>Tanggal Lahir</th>
@@ -80,6 +82,7 @@
                         </tr>
                         @foreach ($pasiens as $pasien)
                             <tr>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $pasien->nama }}</td>
                                 <td>{{ $pasien->nik }}</td>
                                 <td>{{ $pasien->tanggal_lahir }}</td>

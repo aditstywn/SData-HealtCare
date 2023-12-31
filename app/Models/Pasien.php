@@ -20,8 +20,8 @@ class Pasien extends Model
         return $this->hasMany(RekamMedis::class);
     }
 
-    public function pasien()
+    public function user()
     {
-        return $this->belongsTo(Pasien::class);
+        return $this->belongsTo(User::class);
     }
 }

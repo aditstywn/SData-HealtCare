@@ -19,6 +19,18 @@
 
             <div class="section-body">
                 <div class="row">
+                    <div class="col-md">
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-dismissible fade show col-lg-8" role="alert">
+                                {{ $message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
+
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">

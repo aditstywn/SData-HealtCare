@@ -52,18 +52,22 @@
                                             <tr>
 
                                                 <th>Nama Rumah Sakit</th>
+                                                <th>Nama Pasien</th>
                                                 <th>Tanggal</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            @foreach ($pasiens as $pasien)
+                                                <tr>
 
-                                                <td>Rs. Adit Sehat Selalu</td>
-                                                <td>32-02-2023</td>
-                                                <td><a href="{{ route('detail_request') }}"
-                                                        class="btn btn-primary">Detail</a></td>
-                                            </tr>
+                                                    <td>{{ $pasien->user->name }}</td>
+                                                    <td>{{ $pasien->nama }}</td>
+                                                    <td>{{ $pasien->tanggal_lahir }}</td>
+                                                    <td><a href="{{ route('request-pasien.show', $pasien->id) }}"
+                                                            class="btn btn-primary">Detail</a></td>
+                                                </tr>
+                                            @endforeach
 
 
 

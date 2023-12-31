@@ -7,6 +7,7 @@
 @endpush
 
 @section('main')
+    {{-- @dd($pasien) --}}
     <div class="main-content">
         <section class="section">
             <div class="section-header">
@@ -26,7 +27,7 @@
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
-                                    <table class="table-striped table" id="sortable-table">
+                                    <table class="table-striped table text-center" id="sortable-table">
                                         <thead>
                                             <tr>
 
@@ -40,15 +41,13 @@
                                         </thead>
                                         <tbody>
                                             <tr>
+                                                <td>{{ $pasien->nama }}</td>
+                                                <td>{{ $pasien->nik }}</td>
+                                                <td>{{ $pasien->alamat }}</td>
+                                                <td>{{ $pasien->jenis_kelamin }}</td>
+                                                <td>{{ $pasien->tanggal_lahir }}</td>
+                                                <td>{{ $pasien->golongan_darah }}</td>
 
-                                                <td>Adit</td>
-                                                <td>826292</td>
-                                                <td>Batang</td>
-                                                <td>
-                                                    Laki-Laki
-                                                </td>
-                                                <td>30-13-2002</td>
-                                                <td>A</td>
                                             </tr>
                                         </tbody>
                                     </table>

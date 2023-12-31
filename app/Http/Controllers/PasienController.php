@@ -6,6 +6,7 @@ use App\Models\Pasien;
 use App\Models\RekamMedis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class PasienController extends Controller
 {
@@ -14,13 +15,6 @@ class PasienController extends Controller
      */
     public function index()
     {
-
-        // request('nik');
-        // $pasiens = Pasien::where('user_id', auth()->user()->id)->latest()->paginate(10);
-        // return view('pages.dashboard', [
-        //     // 'pasiens' => Pasien::latest()->paginate(10),
-        //     'pasiens' => $pasiens,
-        // ]);
 
         $searchNik = request('nik');
 
@@ -68,15 +62,46 @@ class PasienController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pasien $pasien)
+
+    //  function untuk decrypt image
+    public function decryptImage($encryptedBase64)
     {
 
+        $response = Http::timeout(30)->post('http://localhost:8000/image/decrypt', [
+            'base64' => $encryptedBase64,
+            'token' => 'kamu siapa',
+        ]);
+
+        $jsonData = $response->json();
+
+        return $jsonData['data']['base64'];
+    }
+
+    public function show(Pasien $pasien)
+    {
         $pasien->rekamMedis = $pasien->rekamMedis->where('user_id', Auth::id());
+
+        // Dekripsi gambar sebelum melewatkan data ke tampilan
+        foreach ($pasien->rekamMedis as $rekamMedis) {
+            $rekamMedis->image = $this->decryptImage($rekamMedis->image);
+        }
 
         return view('pages.detail_pasien', [
             'pasien' => $pasien,
         ]);
     }
+
+
+    // image belom ke decrypt
+    // public function show(Pasien $pasien)
+    // {
+
+    //     $pasien->rekamMedis = $pasien->rekamMedis->where('user_id', Auth::id());
+
+    //     return view('pages.detail_pasien', [
+    //         'pasien' => $pasien,
+    //     ]);
+    // }
 
     /**
      * Show the form for editing the specified resource.

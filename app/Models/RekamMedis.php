@@ -12,6 +12,7 @@ class RekamMedis extends Model
         'id',
     ];
 
+
     public function pasien()
     {
         return $this->belongsTo(Pasien::class);

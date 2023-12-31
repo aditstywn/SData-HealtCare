@@ -22,7 +22,7 @@
                 </a>
             </div>
             <div class="hide-sidebar-mini mb-2">
-                <a href="{{ route('request') }}" class="btn btn-primary btn-lg btn-block btn-icon-split">
+                <a href="{{ route('request-pasien.index') }}" class="btn btn-primary btn-lg btn-block btn-icon-split">
                     <i class="fas fa-rocket"></i> Request Data Pasien
                 </a>
             </div>

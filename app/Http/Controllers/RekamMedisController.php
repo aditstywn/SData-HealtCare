@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pasien;
 use App\Models\RekamMedis;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class RekamMedisController extends Controller
 {
@@ -42,9 +43,24 @@ class RekamMedisController extends Controller
 
         $validate['image'] = base64_encode(file_get_contents($validate['image']));
 
+
+        $response = Http::timeout(30)->post('http://localhost:8000/image/encrypt', [
+            'base64' => $validate['image'],
+            'token' => 'kamu siapa',
+        ]);
+
+        // if ($response->status() != 200) {
+        //     return redirect()->route('rekam-medis.create')->with('error', 'Encrypt Gambar Tidak Berhasil');
+        // }
+
+        $jsonData = $response->json();
+        $validate['image'] = $jsonData['data']['base64'];
+
         $pasienId = $validate['pasien_id'];
 
         $validate['user_id'] = auth()->user()->id;
+
+
 
         RekamMedis::create($validate);
         return redirect()->route('pasien.show', ['pasien' => $pasienId])->with('success', 'Add RM Berhasil Ditambah');
