@@ -23,8 +23,8 @@
                             <div class="card-body">
                                 <ul class="nav nav-pills">
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="#">All <span
-                                                class="badge badge-white">5</span></a>
+                                        <a class="nav-link active" href="#">All <span class="badge badge-white">
+                                                {{ auth()->user()->rekamMedisRequest()->count() }}</span></a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Pending <span
@@ -60,52 +60,47 @@
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
-
+                                            <th>No.</th>
                                             <th>Nama Rs</th>
                                             <th>NIK</th>
                                             <th>Nama Pasien</th>
                                             <th>Tanggal Request</th>
                                             <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
-                                        <tr>
-                                            <td>Rumah Sehat</td>
-                                            <td>023839282939749</td>
-                                            <td>Sujono</td>
-                                            <td>2018-01-20</td>
-                                            <td>
-                                                <div class="badge badge-primary">Setujui</div>
-                                            </td>
-                                        </tr>
+                                        @foreach ($rekamMedisRequest as $rmr)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $rmr->user->name }}</td>
+                                                <td>{{ $rmr->rekamMedis->pasien->nik }}</td>
+                                                <td>{{ $rmr->rekamMedis->pasien->nama }}</td>
+                                                <td>{{ $rmr->request_date }}</td>
+                                                @if ($rmr->is_request)
+                                                    <td><span class="badge badge-warning">Pending</span>
+                                                    @else
+                                                    <td><span class="badge badge-success">Success</span>
+                                                @endif
 
+                                                </td>
+                                                <td>
+                                                    <form action="{{ route('request_expired.edit', $rmr->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('put')
+                                                        @if ($rmr->is_request)
+                                                            <button type="submit" class="badge badge-primary"
+                                                                type="submit">Setujui</button>
+                                                        @else
+                                                            <button disabled type="submit" class="badge badge-secondary"
+                                                                type="submit">Setujui</button>
+                                                        @endif
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </table>
                                 </div>
-                                <div class="float-right">
-                                    <nav>
-                                        <ul class="pagination">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item active">
-                                                <a class="page-link" href="#">1</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">2</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">3</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
+                                {{-- {{ $rekamMedisRequest->links() }} --}}
                             </div>
                         </div>
                     </div>

@@ -70,7 +70,8 @@
                             <div class="card-body">
                                 <div class="row ">
                                     <div class="col-md-4 m-4">
-                                        <img src="data:image/png;base64,{{ $rm->image }}" width="400" alt="">
+                                        <img src="data:image/png;base64,{{ $rm->image }}" width="300" height="300"
+                                            alt="">
                                     </div>
                                     <div class="col-md-4 m-4">
                                         <h5>Deskripsi</h5>

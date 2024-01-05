@@ -15,14 +15,15 @@
 
             <div class="section-body">
 
-                <div class="row ">
+                <div class="row justify-content-center">
                     <div class="col-8 ">
                         <div class="card-header-action">
-                            <form>
+                            <form action="{{ route('request-pasien.index') }}">
                                 <div class="input-group">
-                                    <input type="text" class="form-control " placeholder="Search NIK">
+                                    <input type="text" class="form-control " placeholder="Search NIK" name="query">
                                     <div class="input-group-btn p-1">
-                                        <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                        <button type="submit" class="btn btn-primary"><i
+                                                class="fas fa-search"></i></button>
                                     </div>
 
                                 </div>
@@ -30,54 +31,84 @@
                         </div>
                     </div>
                 </div>
+
                 <br>
-                <div class="row">
-                    <div class="col-8">
-                        <div class="alert alert-success" role="alert">
-                            Data Pasien Ditemukan !
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Data Pasien</h4>
-                            </div>
-                            <div class="card-body p-0">
-                                <div class="table-responsive">
-                                    <table class="table-striped table" id="sortable-table">
-                                        <thead>
-                                            <tr>
-
-                                                <th>Nama Rumah Sakit</th>
-                                                <th>Nama Pasien</th>
-                                                <th>Tanggal</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($pasiens as $pasien)
-                                                <tr>
-
-                                                    <td>{{ $pasien->user->name }}</td>
-                                                    <td>{{ $pasien->nama }}</td>
-                                                    <td>{{ $pasien->tanggal_lahir }}</td>
-                                                    <td><a href="{{ route('request-pasien.show', $pasien->id) }}"
-                                                            class="btn btn-primary">Detail</a></td>
-                                                </tr>
-                                            @endforeach
-
-
-
-                                        </tbody>
-                                    </table>
+                @if (count($pasiens) > 0)
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="alert alert-success alert-dismissible show fade">
+                                <div class="alert-body">
+                                    <button class="close" data-dismiss="alert">
+                                        <span>×</span>
+                                    </button>
+                                    <pclass="text-center">Data Pasien Ditemukan</pclass=>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @else
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="alert alert-danger alert-dismissible show fade">
+                                <div class="alert-body">
+                                    <button class="close" data-dismiss="alert">
+                                        <span>×</span>
+                                    </button>
+                                    <p>Data Pasien Tidak Ditemukan / Terdaftar</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+
+                @if (count($pasiens) > 0)
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Data Pasien</h4>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table-striped table" id="sortable-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>Nama Rumah Sakit</th>
+                                                    <th>Nama Pasien</th>
+                                                    <th>Tanggal Lahir</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($pasiens as $pasien)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $pasien->user->name }}</td>
+                                                        <td>{{ $pasien->nama }}</td>
+                                                        <td>{{ $pasien->tanggal_lahir }}</td>
+                                                        <td><a href="{{ route('request-pasien.show', $pasien->id) }}"
+                                                                class="btn btn-primary">Detail</a></td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- @else
+                    <div class="row text-center justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <h3 class="p-4">Searching Pasien By NIK</h3>
+                            </div>
+                        </div>
+                    </div> --}}
+                @endif
+                {{-- {{ $pasiens->links() }} --}}
             </div>
         </section>
     </div>

@@ -3651,3 +3651,11 @@ body.layout-3 .main-wrapper {
     opacity: 0;
   }
 }
+
+/* sidebar */
+
+.btn-active {
+    font-size: 15px;
+    font-weight: bolder;
+
+}

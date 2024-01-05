@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rekam_medis', function (Blueprint $table) {
+        Schema::create('rekam_medis_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pasien_id');
+            $table->foreignId('rekam_medis_id');
             $table->foreignId('user_id');
-            $table->text('deskripsi');
-            $table->longText('image');
-            $table->date('tanggal_periksa');
-            $table->date('expired');
+            $table->tinyInteger('is_request')->default(0);
+            $table->date('request_date')->nullable()->default(null);
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rekam_medis');
+        Schema::dropIfExists('rekam_medis_requests');
     }
 };

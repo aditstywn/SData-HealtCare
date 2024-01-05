@@ -87,6 +87,23 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <div class="mb-3 ">
+                                                <label for="expired" class="form-label">Expired</label>
+                                                <input type="date" name="expired"
+                                                    class="form-control @error('expired')
+                                                    is-invalid
+                                                @enderror"
+                                                    id="expired" value="{{ old('expired') }}">
+                                                @error('expired')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
                                     <button type="submit" class="btn btn-primary">Add Rekam Medis</button>
                                 </form>
                             </div>

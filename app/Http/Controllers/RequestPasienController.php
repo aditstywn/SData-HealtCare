@@ -6,18 +6,51 @@ use App\Models\Pasien;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class RequestPasienController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    // public function index()
+    // {
+
+    //     $searchNik = request('query');
+
+    //     if (strlen($searchNik) > 1) {
+    //         $pasiens = Pasien::when($searchNik, function ($query) use ($searchNik) {
+    //             return $query->where('nik', 'like', '%' . $searchNik . '%');
+    //         })
+    //             ->latest()
+    //             ->paginate(10);
+    //     } else {
+    //         $pasiens = Pasien::paginate(10);
+    //     }
+
+    //     return view('pages.request_pasien', [
+    //         'pasiens' => $pasiens,
+    //     ]);
+    // }
+
     public function index()
     {
+        $searchNik = request('query');
+        $pasiens = [];
+
+        if ($searchNik && strlen($searchNik) > 1) {
+            $pasiens = Pasien::when($searchNik, function ($query) use ($searchNik) {
+                return $query->where('nik', 'like', '%' . $searchNik . '%');
+            })
+                ->latest()
+                ->paginate(10);
+        }
+
         return view('pages.request_pasien', [
-            'pasiens' => Pasien::all(),
+            'pasiens' => $pasiens,
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -35,20 +68,42 @@ class RequestPasienController extends Controller
         //
     }
 
+    //  function untuk decrypt image
+    public function decryptImage($encryptedBase64)
+    {
+
+        $response = Http::timeout(30)->post('http://localhost:8000/image/decrypt', [
+            'base64' => $encryptedBase64,
+            'token' => 'kamu siapa',
+        ]);
+
+        $jsonData = $response->json();
+
+        return $jsonData['data']['base64'];
+    }
 
     /**
      * Display the specified resource.
      */
-    public function show(Pasien $pasien)
+    public function show($id)
     {
+        $tanggalSekarang = now();
+        $pasien = Pasien::find($id);
 
+        $pasien->rekamMedis = $pasien->rekamMedis;
+
+        // Dekripsi gambar sebelum melewatkan data ke tampilan
+        foreach ($pasien->rekamMedis as $rekamMedis) {
+            $rekamMedis->image = $this->decryptImage($rekamMedis->image);
+        }
         return view('pages.detail_request', [
             'pasien' => $pasien,
             'message' => 'Yes Terkirim',
+            'dateNow' => $tanggalSekarang,
         ]);
     }
 
-    /**
+    /**`
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
