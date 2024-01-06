@@ -47,7 +47,7 @@ class RekamMedisController extends Controller
         $validate['image'] = base64_encode(file_get_contents($validate['image']));
 
 
-        $response = Http::timeout(30)->post('http://localhost:8000/image/encrypt', [
+        $response = Http::timeout(60)->post('http://localhost:8000/image/encrypt', [
             'base64' => $validate['image'],
             'token' => 'kamu siapa',
         ]);
@@ -95,11 +95,13 @@ class RekamMedisController extends Controller
         ]);
         $rekamMedisRequest = RekamMedisRequest::create($validate);
 
-        return view('pages.detail_request', [
-            'pasien' => $rekamMedisRequest->rekamMedis->pasien,
-            'message' => 'Yes Terkirim',
-            'dateNow' => now(),
-        ]);
+        // return view('pages.detail_request', [
+        //     'pasien' => $rekamMedisRequest->rekamMedis->pasien,
+        //     'message' => 'Yes Terkirim',
+        //     'dateNow' => now(),
+        // ]);
+
+        return redirect()->route('request_status');
     }
 
     /**
@@ -107,7 +109,6 @@ class RekamMedisController extends Controller
      */
     public function destroy(RekamMedis $rekamMedis)
     {
-        //
     }
 
 
@@ -123,6 +124,7 @@ class RekamMedisController extends Controller
         // dd($rekamMedisRequest);
         return view('pages.request_expired', [
             'rekamMedisRequest' => $rekamMedisRequest,
+            'title' => 'List Data Request'
         ]);
     }
 
@@ -132,12 +134,14 @@ class RekamMedisController extends Controller
         $rekamMedisRequest = RekamMedisRequest::find($id);
 
         $rekamMedisRequest->is_request = 0;
-        $rekamMedisRequest->rekamMedis->expired = $rekamMedisRequest->request_date;
+
+        $rekamMedis = RekamMedis::find($rekamMedisRequest->rekam_medis_id);
+        $rekamMedis->expired = $rekamMedisRequest->request_date;
+
+        $rekamMedis->save();
         $rekamMedisRequest->save();
 
-        $rekamMedis = RekamMedis::find($id);
-        $rekamMedis->expired = $rekamMedisRequest->request_date;
-        $rekamMedis->save();
+
 
 
 

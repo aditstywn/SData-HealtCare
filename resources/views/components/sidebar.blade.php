@@ -25,8 +25,9 @@
                 </a>
             </div>
             <div class="hide-sidebar-mini  mb-2">
-                <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split text-center">
-                    <i class="fa-solid fa-envelope"></i> Info Request
+                <a href="{{ route('request_status') }}"
+                    class="btn btn-primary btn-lg btn-block btn-icon-split text-center">
+                    <i class="fa-solid fa-envelope"></i> Status Request
                 </a>
             </div>
             <div class="hide-sidebar-mini mb-2">

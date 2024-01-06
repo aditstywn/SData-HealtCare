@@ -77,31 +77,31 @@ class PasienController extends Controller
         return $jsonData['data']['base64'];
     }
 
-    // public function show(Pasien $pasien)
-    // {
-    //     $pasien->rekamMedis = $pasien->rekamMedis->where('user_id', Auth::id());
-
-    //     // Dekripsi gambar sebelum melewatkan data ke tampilan
-    //     foreach ($pasien->rekamMedis as $rekamMedis) {
-    //         $rekamMedis->image = $this->decryptImage($rekamMedis->image);
-    //     }
-
-    //     return view('pages.detail_pasien', [
-    //         'pasien' => $pasien,
-    //     ]);
-    // }
-
-
-    // image belom ke decrypt
     public function show(Pasien $pasien)
     {
-
         $pasien->rekamMedis = $pasien->rekamMedis->where('user_id', Auth::id());
+
+        // Dekripsi gambar sebelum melewatkan data ke tampilan
+        foreach ($pasien->rekamMedis as $rekamMedis) {
+            $rekamMedis->image = $this->decryptImage($rekamMedis->image);
+        }
 
         return view('pages.detail_pasien', [
             'pasien' => $pasien,
         ]);
     }
+
+
+    // image belom ke decrypt
+    // public function show(Pasien $pasien)
+    // {
+
+    //     $pasien->rekamMedis = $pasien->rekamMedis->where('user_id', Auth::id());
+
+    //     return view('pages.detail_pasien', [
+    //         'pasien' => $pasien,
+    //     ]);
+    // }
 
     /**
      * Show the form for editing the specified resource.

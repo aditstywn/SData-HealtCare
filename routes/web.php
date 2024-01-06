@@ -32,6 +32,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/request-expired', [RekamMedisController::class, 'expiredIndex'])->name('request_expired');
     Route::put('/request-expired/{id}', [RekamMedisController::class, 'expiredUpdate'])->name('request_expired.edit');
+
+    Route::get('/request-status', [RequestPasienController::class, 'statusRequestShow'])->name('request_status');
+    Route::delete('/request-status/destroy/{id}', [RequestPasienController::class, 'statusRequestDestroy'])->name('request_status.destroy');
 });
 
 // Route::get('/request-expired', function () {

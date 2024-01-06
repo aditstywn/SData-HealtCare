@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pasien;
+use App\Models\RekamMedisRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -123,7 +124,26 @@ class RequestPasienController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
+    { //
+    }
+
+
+    public function statusRequestShow()
     {
         //
+        $rekamMedisRequest = RekamMedisRequest::where('user_id', Auth::id())->orderBy('is_request', 'desc')->get();
+        // dd($rekamMedisRequest);
+        return view('pages.request_expired', [
+            'rekamMedisRequest' => $rekamMedisRequest,
+            'title' => 'Status Request Pasien',
+        ]);
+    }
+
+    public function statusRequestDestroy($id)
+    {
+        //
+        RekamMedisRequest::destroy($id);
+
+        return redirect()->route('request_status');
     }
 }

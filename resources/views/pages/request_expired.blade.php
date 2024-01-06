@@ -11,7 +11,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Request Expired</h1>
+                <h1>{{ $title }}</h1>
 
             </div>
             <div class="section-body">
@@ -24,7 +24,7 @@
                                 <ul class="nav nav-pills">
                                     <li class="nav-item">
                                         <a class="nav-link active" href="#">All <span class="badge badge-white">
-                                                {{ auth()->user()->rekamMedisRequest()->count() }}</span></a>
+                                                0</span></a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Pending <span
@@ -71,7 +71,11 @@
                                         @foreach ($rekamMedisRequest as $rmr)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $rmr->user->name }}</td>
+                                                @if ($title == 'List Data Request')
+                                                    <td>{{ $rmr->user->name }}</td>
+                                                @elseif($title == 'Status Request Pasien')
+                                                    <td>{{ $rmr->rekamMedis->user->name }}</td>
+                                                @endif
                                                 <td>{{ $rmr->rekamMedis->pasien->nik }}</td>
                                                 <td>{{ $rmr->rekamMedis->pasien->nama }}</td>
                                                 <td>{{ $rmr->request_date }}</td>
@@ -83,18 +87,32 @@
 
                                                 </td>
                                                 <td>
-                                                    <form action="{{ route('request_expired.edit', $rmr->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('put')
-                                                        @if ($rmr->is_request)
-                                                            <button type="submit" class="badge badge-primary"
-                                                                type="submit">Setujui</button>
-                                                        @else
-                                                            <button disabled type="submit" class="badge badge-secondary"
-                                                                type="submit">Setujui</button>
-                                                        @endif
-                                                    </form>
+                                                    @if ($title == 'List Data Request')
+                                                        <form action="{{ route('request_expired.edit', $rmr->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('put')
+                                                            @if ($rmr->is_request)
+                                                                <button type="submit" class="badge badge-primary"
+                                                                    type="submit">Setujui</button>
+                                                            @else
+                                                                <button disabled type="submit"
+                                                                    class="badge badge-secondary"
+                                                                    type="submit">Setujui</button>
+                                                            @endif
+                                                        </form>
+                                                    @elseif($title == 'Status Request Pasien')
+                                                        <form action="{{ route('request_status.destroy', $rmr->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('delete')
+
+                                                            <button type="submit" class="badge badge-danger"
+                                                                type="submit">Delete</button>
+                                                        </form>
+                                                    @endif
+
+
                                                 </td>
                                             </tr>
                                         @endforeach
