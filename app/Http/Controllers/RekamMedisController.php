@@ -44,6 +44,7 @@ class RekamMedisController extends Controller
             'expired' => 'required|date',
         ]);
 
+        //  disini terjadinya proses encrypting gambar sebelum masuk ke database
         $validate['image'] = base64_encode(file_get_contents($validate['image']));
 
 
