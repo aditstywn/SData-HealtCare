@@ -21,12 +21,26 @@
 
             <div class="section-body">
                 <div class="card">
-                    <form action="{{ route('pasien.store') }}" method="POST">
+                    <form action="{{ route('pasien.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-header">
                             <h4>Input Data Pasien</h4>
                         </div>
                         <div class="card-body">
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Foto Pasien</label>
+                                <img src="" alt="" class="img-priview img-fluid mb-3 col-sm-5">
+                                <input
+                                    class="form-control @error('foto_pasien')
+                                is-invalid
+                                @enderror"
+                                    type="file" id="foto_pasien" name="foto_pasien" onchange="previewImage()">
+                                @error('foto_pasien')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                             <div class="form-group">
                                 <label>Nama</label>
                                 <input type="text"
@@ -41,8 +55,21 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label>Ibu Kandung</label>
+                                <input type="text"
+                                    class="form-control @error('ibu_kandung')
+                                is-invalid
+                            @enderror"
+                                    name="ibu_kandung" value="{{ old('ibu_kandung') }}">
+                                @error('ibu_kandung')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label>NIK</label>
-                                <input type="nik"
+                                <input type="text"
                                     class="form-control @error('nik')
                                 is-invalid
                                 @enderror"
@@ -55,7 +82,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Alamat</label>
-                                <input type="alamat"
+                                <input type="text"
                                     class="form-control @error('alamat')
                                 is-invalid
                                 @enderror"
@@ -100,6 +127,8 @@
                                 @enderror
                             </div>
 
+
+
                             <div class="form-group">
                                 <label class="form-label">Golongan Darah</label>
                                 <div class="selectgroup w-100">
@@ -141,5 +170,21 @@
 @endsection
 
 @push('scripts')
+    <script>
+        function previewImage() {
+
+            const image = document.querySelector('#foto_pasien');
+            const imagePreview = document.querySelector('.img-priview');
+
+            imagePreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imagePreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
     <script src="{{ asset('library/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 @endpush

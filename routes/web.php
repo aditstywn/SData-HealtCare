@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.auth.login');
+    return view('pages.landing_page');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::resource('/pasien', PasienController::class);
+    Route::get('/detail-pasien/{id}', [PasienController::class, 'detail'])->name('detail-pasien');
     Route::resource('/rekam-medis', RekamMedisController::class);
     Route::resource('/request-pasien', RequestPasienController::class);
     Route::get('/request-pasien-search', [RequestPasienController::class, 'searchCustom'])->name('request-pasien.search');
@@ -37,6 +38,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/request-status/destroy/{id}', [RequestPasienController::class, 'statusRequestDestroy'])->name('request_status.destroy');
 });
 
-// Route::get('/request-expired', function () {
-//     return view('pages.request_expired');
-// })->name('request_expired');
+Route::get('/landing-page', function () {
+    return view('pages.landing_page');
+})->name('landing-page');

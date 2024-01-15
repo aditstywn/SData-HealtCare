@@ -8,7 +8,8 @@
 @endpush
 
 @section('main')
-    <div class="card card-primary">
+
+    <div class="card card-primary mt-5">
         <div class="card-header">
             <h4>Login</h4>
         </div>

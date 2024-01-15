@@ -17,43 +17,13 @@
             <div class="section-body">
 
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card mb-0">
-                            <div class="card-body">
-                                <ul class="nav nav-pills">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="#">All <span class="badge badge-white">
-                                                0</span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Pending <span
-                                                class="badge badge-primary">1</span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Success <span
-                                                class="badge badge-primary">0</span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
 
-                                <div class="float-right">
-                                    <form>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+
 
                                 <div class="clearfix mb-3"></div>
 

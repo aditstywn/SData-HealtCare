@@ -51,6 +51,23 @@
 
                 </div>
 
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-dismissible show fade">
+                                <div class="alert-body">
+                                    <p>{{ $message }}</p>
+                                    <button class="close" data-dismiss="alert">
+                                        <span>×</span>
+                                    </button>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
+
+
 
 
                 <div class="row justify-content-center">
@@ -87,7 +104,8 @@
                                 <td>{{ $pasien->nik }}</td>
                                 <td>{{ $pasien->tanggal_lahir }}</td>
                                 <td>
-                                    <a href="{{ route('pasien.show', $pasien->id) }}" class="btn btn-info">Detail</a>
+                                    <a href="{{ route('pasien.show', $pasien->id) }}" class="btn btn-info"><i
+                                            class="fa-solid fa-file"></i> Detail</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -111,7 +129,10 @@
     <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
     <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+    <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
+
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/index-0.js') }}"></script>
+    <script src="{{ asset('js/page/modules-sweetalert.js') }}"></script>
 @endpush

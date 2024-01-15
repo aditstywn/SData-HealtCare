@@ -16,13 +16,22 @@
             <div class="section-body">
 
 
-                <br>
+                <div class="row mb-2">
+                    <div class="col-lg">
+                        <a href="{{ route('pasien.index') }}" class="btn btn-danger "><i class="fa-regular fa-circle-left"></i>
+                            Kembali</a>
+                        <a class="btn btn-info ml-auto" href="{{ route('detail-pasien', $pasien->id) }}"><i
+                                class="fa-solid fa-file"></i> Detail Data Diri</a>
+                        <a href="{{ route('rekam-medis.create', ['pasien_id' => $pasien->id]) }}"
+                            class="btn btn-success ml-auto"><i class="fa-solid fa-receipt"></i> Tambah RM
+                            Pasien</a>
+                    </div>
+                </div>
                 <div class="row">
-                    <div class="col-md">
+                    <div class="col-lg">
                         <div class="card">
                             <div class="card-header">
                                 <h4>Data Diri Pasien</h4>
-
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
@@ -32,9 +41,7 @@
 
                                                 <th>Nama </th>
                                                 <th>NIK </th>
-                                                <th>Alamat</th>
                                                 <th>Jenis Kelamin</th>
-                                                <th>Tanggal Lahir</th>
                                                 <th>Golongan Darah</th>
                                             </tr>
                                         </thead>
@@ -43,9 +50,7 @@
 
                                                 <td>{{ $pasien->nama }}</td>
                                                 <td>{{ $pasien->nik }}</td>
-                                                <td>{{ $pasien->alamat }}</td>
                                                 <td>{{ $pasien->jenis_kelamin }}</td>
-                                                <td>{{ $pasien->tanggal_lahir }}</td>
                                                 <td>{{ $pasien->golongan_darah }}</td>
 
                                             </tr>
@@ -61,9 +66,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Riwayat Penyakit</h4>
-                        <a href="{{ route('rekam-medis.create', ['pasien_id' => $pasien->id]) }}"
-                            class="btn btn-success ml-auto">Tambah RM
-                            Pasien</a>
+
                     </div>
                     @if ($pasien->rekamMedis->count())
                         @foreach ($pasien->rekamMedis as $rm)

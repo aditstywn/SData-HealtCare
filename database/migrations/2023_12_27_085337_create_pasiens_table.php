@@ -20,7 +20,8 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan']);
             $table->enum('golongan_darah', ['A', 'B', 'AB', 'O']);
-            // $table->string('golongan_darah');
+            $table->string('ibu_kandung');
+            $table->longText('foto_pasien')->nullable();
             $table->timestamps();
         });
     }

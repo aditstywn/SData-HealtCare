@@ -16,7 +16,13 @@
             <div class="section-body">
 
 
-                <br>
+                <div class="row mb-2">
+                    <div class="col-lg">
+                        <a href="{{ route('request-pasien.index') }}" class="btn btn-danger "><i
+                                class="fa-regular fa-circle-left"></i>
+                            Kembali</a>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md">
                         <div class="card">
@@ -32,7 +38,7 @@
 
                                                 <th>Nama </th>
                                                 <th>NIK </th>
-                                                <th>Alamat</th>
+                                                {{-- <th>Alamat</th> --}}
                                                 <th>Jenis Kelamin</th>
                                                 <th>Tanggal Lahir</th>
                                                 <th>Golongan Darah</th>
@@ -42,7 +48,7 @@
                                             <tr>
                                                 <td>{{ $pasien->nama }}</td>
                                                 <td>{{ $pasien->nik }}</td>
-                                                <td>{{ $pasien->alamat }}</td>
+                                                {{-- <td>{{ $pasien->alamat }}</td> --}}
                                                 <td>{{ $pasien->jenis_kelamin }}</td>
                                                 <td>{{ $pasien->tanggal_lahir }}</td>
                                                 <td>{{ $pasien->golongan_darah }}</td>

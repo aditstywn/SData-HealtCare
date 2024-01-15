@@ -18,15 +18,10 @@
             </div>
 
             <div class="section-body">
-                <div class="row">
+                <div class="row mb-2">
                     <div class="col-md">
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success alert-dismissible fade show col-lg-8" role="alert">
-                                {{ $message }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        @endif
+                        <a href="{{ route('pasien.show', $pasien_id) }}" class="btn btn-danger"><i
+                                class="fa-regular fa-circle-left"></i> Kembali</a>
                     </div>
                 </div>
                 <div class="row">
@@ -55,19 +50,19 @@
                                                 {{ $message }}
                                             </div>
                                         @enderror
-                                        <div class="mb-3">
-                                            <label for="deskripsi" class="form-label">Deskripsi</label>
-                                            <input type="text" name="deskripsi"
-                                                class="form-control @error('deskripsi')
-                                                is-invalid
-                                            @enderror"
-                                                id="deskripsi" autofocus value="{{ old('deskripsi') }}">
-                                            @error('deskripsi')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="deskripsi" class="form-label">Deskripsi</label>
+                                        <input type="text" name="deskripsi"
+                                            class="form-control @error('deskripsi')
+                                            is-invalid
+                                        @enderror"
+                                            id="deskripsi" autofocus value="{{ old('deskripsi') }}">
+                                        @error('deskripsi')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div class="row">

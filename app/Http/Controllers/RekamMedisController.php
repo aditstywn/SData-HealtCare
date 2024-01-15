@@ -47,7 +47,6 @@ class RekamMedisController extends Controller
         //  disini terjadinya proses encrypting gambar sebelum masuk ke database
         $validate['image'] = base64_encode(file_get_contents($validate['image']));
 
-
         $response = Http::timeout(60)->post('http://localhost:8000/image/encrypt', [
             'base64' => $validate['image'],
             'token' => 'kamu siapa',

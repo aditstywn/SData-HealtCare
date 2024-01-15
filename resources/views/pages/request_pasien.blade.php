@@ -89,7 +89,8 @@
                                                         <td>{{ $pasien->nama }}</td>
                                                         <td>{{ $pasien->tanggal_lahir }}</td>
                                                         <td><a href="{{ route('request-pasien.show', $pasien->id) }}"
-                                                                class="btn btn-primary">Detail</a></td>
+                                                                class="btn btn-info"><i class="fa-solid fa-file"></i>
+                                                                Detail</a></td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
