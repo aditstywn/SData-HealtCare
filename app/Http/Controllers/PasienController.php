@@ -177,8 +177,7 @@ class PasienController extends Controller
     {
         //
     }
-
-
+  
     public function detail($id)
     {
         $pasien = Pasien::find($id);
