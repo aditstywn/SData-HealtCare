@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PasienController;
+use App\Http\Controllers\RekamMedisController;
+use App\Http\Controllers\RequestPasienController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,49 +17,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.landing_page');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::get('/request', function () {
-        return view('pages.request_pasien');
-    })->name('request');
-
-    Route::get('/request-expired', function () {
-        return view('pages.request_expired');
-    })->name('request_expired');
-
-    Route::get('/detail-request-pasien', function () {
-        return view('pages.detail_request');
-    })->name('detail_request');
-
-    // Route::get('/home', function () {
-    //     return view('pages.dashboard');
-    // })->name('home');
-
-    // Route::get('/input', function () {
-    //     return view('pages.input_pasien');
-    // })->name('input');
-
-
-    // Route::get('/detail-pasien', function () {
-    //     return view('pages.detail_pasien');
-    // })->name('detail');
-
-
-    // Route::get('/update', function () {
-    //     return view('pages.update_user');
-    // });
+Route::middleware(['auth'])->group(function () {
+    Route::get('home', function () {
+        return redirect()->route('pasien.index');
+    });
 
     Route::resource('/pasien', PasienController::class);
+    Route::get('/detail-pasien/{id}', [PasienController::class, 'detail'])->name('detail-pasien');
+    Route::resource('/rekam-medis', RekamMedisController::class);
+    Route::resource('/request-pasien', RequestPasienController::class);
+    Route::get('/request-pasien-search', [RequestPasienController::class, 'searchCustom'])->name('request-pasien.search');
+
+    Route::get('/request-expired', [RekamMedisController::class, 'expiredIndex'])->name('request_expired');
+    Route::put('/request-expired/{id}', [RekamMedisController::class, 'expiredUpdate'])->name('request_expired.edit');
+
+    Route::get('/request-status', [RequestPasienController::class, 'statusRequestShow'])->name('request_status');
+    Route::delete('/request-status/destroy/{id}', [RequestPasienController::class, 'statusRequestDestroy'])->name('request_status.destroy');
 });
 
-require __DIR__ . '/auth.php';
+Route::get('/landing-page', function () {
+    return view('pages.landing_page');
+})->name('landing-page');

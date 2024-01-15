@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('rekam_medis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pasien_id');
+            $table->foreignId('user_id');
             $table->text('deskripsi');
-            $table->string('image');
+            $table->longText('image');
             $table->date('tanggal_periksa');
+            $table->date('expired');
             $table->timestamps();
         });
     }

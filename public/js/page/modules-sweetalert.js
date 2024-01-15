@@ -5,7 +5,7 @@ $("#swal-1").click(function() {
 });
 
 $("#swal-2").click(function() {
-	swal('Good Job', 'You clicked the button!', 'success');
+	swal('Good Job', 'Create Pasien Berhasil', 'success');
 });
 
 $("#swal-3").click(function() {

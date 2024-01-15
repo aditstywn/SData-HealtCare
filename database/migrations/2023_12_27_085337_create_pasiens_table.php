@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('pasiens', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->string('nama');
-            $table->string('nik')->unique();
+            $table->string('nik');
             $table->string('alamat');
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan']);
             $table->enum('golongan_darah', ['A', 'B', 'AB', 'O']);
-            // $table->string('golongan_darah');
+            $table->string('ibu_kandung');
+            $table->longText('foto_pasien')->nullable();
             $table->timestamps();
         });
     }

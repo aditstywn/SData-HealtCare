@@ -11,101 +11,84 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Request Expired</h1>
+                <h1>{{ $title }}</h1>
 
             </div>
             <div class="section-body">
 
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card mb-0">
-                            <div class="card-body">
-                                <ul class="nav nav-pills">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="#">All <span
-                                                class="badge badge-white">5</span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Pending <span
-                                                class="badge badge-primary">1</span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Success <span
-                                                class="badge badge-primary">0</span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
 
-                                <div class="float-right">
-                                    <form>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+
 
                                 <div class="clearfix mb-3"></div>
 
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
-
+                                            <th>No.</th>
                                             <th>Nama Rs</th>
                                             <th>NIK</th>
                                             <th>Nama Pasien</th>
                                             <th>Tanggal Request</th>
                                             <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
-                                        <tr>
-                                            <td>Rumah Sehat</td>
-                                            <td>023839282939749</td>
-                                            <td>Sujono</td>
-                                            <td>2018-01-20</td>
-                                            <td>
-                                                <div class="badge badge-primary">Setujui</div>
-                                            </td>
-                                        </tr>
+                                        @foreach ($rekamMedisRequest as $rmr)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                @if ($title == 'List Data Request')
+                                                    <td>{{ $rmr->user->name }}</td>
+                                                @elseif($title == 'Status Request Pasien')
+                                                    <td>{{ $rmr->rekamMedis->user->name }}</td>
+                                                @endif
+                                                <td>{{ $rmr->rekamMedis->pasien->nik }}</td>
+                                                <td>{{ $rmr->rekamMedis->pasien->nama }}</td>
+                                                <td>{{ $rmr->request_date }}</td>
+                                                @if ($rmr->is_request)
+                                                    <td><span class="badge badge-warning">Pending</span>
+                                                    @else
+                                                    <td><span class="badge badge-success">Success</span>
+                                                @endif
 
+                                                </td>
+                                                <td>
+                                                    @if ($title == 'List Data Request')
+                                                        <form action="{{ route('request_expired.edit', $rmr->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('put')
+                                                            @if ($rmr->is_request)
+                                                                <button type="submit" class="badge badge-primary"
+                                                                    type="submit">Setujui</button>
+                                                            @else
+                                                                <button disabled type="submit"
+                                                                    class="badge badge-secondary"
+                                                                    type="submit">Setujui</button>
+                                                            @endif
+                                                        </form>
+                                                    @elseif($title == 'Status Request Pasien')
+                                                        <form action="{{ route('request_status.destroy', $rmr->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('delete')
+
+                                                            <button type="submit" class="badge badge-danger"
+                                                                type="submit">Delete</button>
+                                                        </form>
+                                                    @endif
+
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </table>
                                 </div>
-                                <div class="float-right">
-                                    <nav>
-                                        <ul class="pagination">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item active">
-                                                <a class="page-link" href="#">1</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">2</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">3</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
+                                {{-- {{ $rekamMedisRequest->links() }} --}}
                             </div>
                         </div>
                     </div>

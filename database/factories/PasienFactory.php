@@ -23,6 +23,10 @@ class PasienFactory extends Factory
             'jenis_kelamin' => $this->faker->randomElement(['Laki-Laki', 'Perempuan']),
             'golongan_darah' => $this->faker->randomElement(['A', 'B', 'AB', 'O']),
             'tanggal_lahir' => $this->faker->date('Y-m-d'),
+            'user_id' => mt_rand(1, 3),
+            'ibu_kandung' => $this->faker->name(),
+            'foto_pasien' => $this->faker->imageUrl(),
+
         ];
     }
 }

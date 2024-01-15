@@ -15,7 +15,7 @@
                 <h1>Home</h1>
             </div>
             <div class="section-body">
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-primary">
@@ -26,49 +26,57 @@
                                     <h4>Total Pasien</h4>
                                 </div>
                                 <div class="card-body">
-                                    10
+
+                                    {{ auth()->user()->pasien()->count() }}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                         <div class="card card-statistic-1">
-                            <div class="card-icon bg-primary">
-                                <i class="far fa-user"></i>
+                            <div class="card-icon bg-warning">
+                                <i class="far fa-file"></i>
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>Data Available</h4>
+                                    <h4>Total Rekam Medis</h4>
                                 </div>
                                 <div class="card-body">
-                                    10
+
+                                    {{ auth()->user()->rekamMedis()->count() }}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-primary">
-                                <i class="far fa-user"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Data Request</h4>
+
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-dismissible show fade">
+                                <div class="alert-body">
+                                    <p>{{ $message }}</p>
+                                    <button class="close" data-dismiss="alert">
+                                        <span>×</span>
+                                    </button>
                                 </div>
-                                <div class="card-body">
-                                    10
-                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
 
-                <div class="row ">
+
+
+
+
+                <div class="row justify-content-center">
                     <div class="col-8 ">
                         <div class="card-header-action">
-                            <form>
+                            <form action="{{ route('pasien.index') }}">
+                                {{-- @csrf --}}
                                 <div class="input-group">
-                                    <input type="text" class="form-control " placeholder="Search NIK">
+                                    <input type="text" class="form-control " placeholder="Search NIK" name="nik">
                                     <div class="input-group-btn p-1">
                                         <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                     </div>
@@ -83,7 +91,7 @@
                 <div class="table-responsive">
                     <table class="table-striped table">
                         <tr>
-
+                            <th>No.</th>
                             <th>Nama </th>
                             <th>NIK</th>
                             <th>Tanggal Lahir</th>
@@ -91,11 +99,13 @@
                         </tr>
                         @foreach ($pasiens as $pasien)
                             <tr>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $pasien->nama }}</td>
                                 <td>{{ $pasien->nik }}</td>
                                 <td>{{ $pasien->tanggal_lahir }}</td>
                                 <td>
-                                    <a href="{{ route('pasien.show', $pasien->id) }}" class="btn btn-info">Detail</a>
+                                    <a href="{{ route('pasien.show', $pasien->id) }}" class="btn btn-info"><i
+                                            class="fa-solid fa-file"></i> Detail</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -119,7 +129,10 @@
     <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
     <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+    <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
+
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/index-0.js') }}"></script>
+    <script src="{{ asset('js/page/modules-sweetalert.js') }}"></script>
 @endpush
