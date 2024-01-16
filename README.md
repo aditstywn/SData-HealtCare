@@ -56,6 +56,7 @@ Run laravel
 ![1](https://github.com/aditstywn/SData-HealtCare/assets/137696058/425870e8-ae7c-46cf-8a47-2475b3be5641) ![encrypt](https://github.com/aditstywn/SData-HealtCare/assets/137696058/83fb11b1-bb2a-40d4-b826-10d6b76f88ce)
 
 ## Tampilan Aplikasi
+Dibawah ini file pdf tampilan Aplikasinya, hanya beberapa tampilan jika ingin melihat sepenuhnya silahkan kunjungi link situs ini yang telah disediakan
 [Tampilan Website.pdf](https://github.com/aditstywn/SData-HealtCare/files/13945372/Tampilan.Website.pdf)
 
 
