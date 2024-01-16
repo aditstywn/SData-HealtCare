@@ -51,3 +51,5 @@ Run laravel
 ```bash
   php artisan serve --port==4000
 ```
+
+## Contoh hasil encrypt dan decrypt
