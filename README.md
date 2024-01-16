@@ -53,4 +53,4 @@ Run laravel
 ```
 
 ## Contoh hasil encrypt dan decrypt
-![1](https://github.com/aditstywn/SData-HealtCare/assets/137696058/425870e8-ae7c-46cf-8a47-2475b3be5641)
+![1](https://github.com/aditstywn/SData-HealtCare/assets/137696058/425870e8-ae7c-46cf-8a47-2475b3be5641) ![1](https://github.com/aditstywn/SData-HealtCare/assets/137696058/425870e8-ae7c-46cf-8a47-2475b3be5641)
