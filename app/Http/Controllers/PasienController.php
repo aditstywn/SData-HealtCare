@@ -46,7 +46,7 @@ class PasienController extends Controller
     {
         $validate = $request->validate([
             'nama' => 'required|max:100',
-            'foto_pasien' => 'required|image|file',
+            'foto_pasien' => 'required|image|file|max:1024',
             'ibu_kandung' => 'required',
             'nik' => 'required',
             'alamat' => 'required',
@@ -143,7 +143,7 @@ class PasienController extends Controller
             'jenis_kelamin' => 'required',
             'tanggal_lahir' => 'required',
             'golongan_darah' => 'required',
-            'foto_pasien' => 'image|file',
+            'foto_pasien' => 'image|file|max:1024',
         ]);
 
 

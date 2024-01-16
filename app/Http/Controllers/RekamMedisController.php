@@ -39,7 +39,7 @@ class RekamMedisController extends Controller
         $validate = $request->validate([
             'pasien_id' => 'required',
             'deskripsi' => 'required|max:255',
-            'image' => 'required|image|file',
+            'image' => 'required|image|file|max:1024',
             'tanggal_periksa' => 'required|date',
             'expired' => 'required|date',
         ]);
