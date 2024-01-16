@@ -7,6 +7,8 @@ use App\Models\RekamMedis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 
 class PasienController extends Controller
 {
@@ -15,8 +17,8 @@ class PasienController extends Controller
      */
     public function index()
     {
-
         $searchNik = request('nik');
+
 
         $pasiens = Pasien::where('user_id', auth()->user()->id)
             ->when($searchNik, function ($query) use ($searchNik) {
@@ -25,11 +27,22 @@ class PasienController extends Controller
             ->latest()
             ->paginate(10);
 
+        // Dekripsi NIK yang sudah ada pada data pasien
+        foreach ($pasiens as $pasien) {
+            try {
+                $pasien->nik = Crypt::decryptString($pasien->nik);
+            } catch (DecryptException $e) {
+                // jika terjadi kesalahan lakukan sesuatu disisni
+            }
+        }
 
         return view('pages.dashboard', [
             'pasiens' => $pasiens,
         ]);
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -54,6 +67,8 @@ class PasienController extends Controller
             'tanggal_lahir' => 'required',
             'golongan_darah' => 'required',
         ]);
+
+        $validate['nik'] = Crypt::encryptString($validate['nik']);
 
         //  disini terjadinya proses encrypting gambar sebelum masuk ke database
         $validate['foto_pasien'] = base64_encode(file_get_contents($validate['foto_pasien']));
@@ -98,6 +113,11 @@ class PasienController extends Controller
         foreach ($pasien->rekamMedis as $rekamMedis) {
             $rekamMedis->image = $this->decryptImage($rekamMedis->image);
         }
+        try {
+            $pasien->nik = Crypt::decryptString($pasien->nik);
+        } catch (DecryptException $e) {
+            // jika terjadi kesalahan lakukan sesuatu disisni
+        }
 
         return view('pages.detail_pasien', [
             'pasien' => $pasien,
@@ -125,6 +145,12 @@ class PasienController extends Controller
     {
         $pasien->foto_pasien = $this->decryptImage($pasien->foto_pasien);
 
+        try {
+            $pasien->nik = Crypt::decryptString($pasien->nik);
+        } catch (DecryptException $e) {
+            // jika terjadi kesalahan lakukan sesuatu disisni
+        }
+
         return view('pages.pasien.edit_data_pasien', [
             'pasien' => $pasien,
         ]);
@@ -146,6 +172,7 @@ class PasienController extends Controller
             'foto_pasien' => 'image|file',
         ]);
 
+        $validate['nik'] = Crypt::encryptString($validate['nik']);
 
 
         if ($request->file('foto_pasien')) {
@@ -185,6 +212,12 @@ class PasienController extends Controller
         $pasien->rekamMedis = $pasien->rekamMedis->where('user_id', Auth::id());
 
         $pasien->foto_pasien = $this->decryptImage($pasien->foto_pasien);
+
+        try {
+            $pasien->nik = Crypt::decryptString($pasien->nik);
+        } catch (DecryptException $e) {
+            // jika terjadi kesalahan lakukan sesuatu disisni
+        }
 
         return view('pages.pasien.detail_data_diri_pasien', [
             'pasien' => $pasien,
