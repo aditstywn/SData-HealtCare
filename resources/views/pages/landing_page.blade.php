@@ -40,9 +40,9 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#about">About</a></li>
-                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
+                    <li><a class="nav-link scrollto" href="#services">Layanan</a></li>
+                    <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
                     <li><a class="getstarted scrollto" href="{{ route('login') }}">Login</a></li>
                     <li><a class="getstarted scrollto" href="{{ route('register') }}">Register</a></li>
                 </ul>
@@ -60,7 +60,7 @@
                 <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
                     data-aos="fade-up" data-aos-delay="200">
                     <h1>Solusi Keamanan Data Pasien</h1>
-                    <h2>Kita menyediakan service untuk mengamankan data rekam medis pasien dengan keamanan yang canggih
+                    <h2>Kami menyediakan service untuk mengamankan data rekam medis pasien dengan keamanan yang canggih
                     </h2>
                     <div class="d-flex justify-content-center justify-content-lg-start">
                         <a href="#about" class="btn-get-started scrollto">Get Started</a>
@@ -83,14 +83,14 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
-                    <h2>About Us</h2>
+                    <h2>Tentang Kami</h2>
                 </div>
 
                 <div class="row content">
                     <div class="col-lg-6">
                         <p>
-                            SData-HealthCare atau bisa disebut Secure Data Health Care, adalah suatu sistem pihak ketiga
-                            untuk menghubungkan data rekam medis antar rumah sakit, secara simpel.
+                            SData-HealthCare atau bisa disebut Secure Data Health Care adalah suatu sistem pihak ketiga
+                            untuk menghubungkan data rekam medis antar rumah sakit secara simpel
                         </p>
                         <!-- <ul>
               <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
@@ -119,7 +119,7 @@
                         class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
 
                         <div class="content">
-                            <h3>Apa yang membuat <strong>SData-HealthCare</strong> Sangat dibutuhkan?</h3>
+                            <h3>Apa yang membuat <strong>SData-HealthCare</strong> sangat dibutuhkan?</h3>
                         </div>
                         <div class="accordion-list">
                             <ul>
@@ -144,7 +144,7 @@
                                     <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
                                         <p>
                                             Rumah Sakit tidak perlu repot menyimpan data Rekam Medis dari tiap pasien.
-                                            Karena kita SData-HealthCare sudah menyediakan komputasi dan penyimpanan
+                                            Karena SData-HealthCare sudah menyediakan komputasi dan penyimpanan
                                             mutakhir
                                         </p>
                                     </div>
@@ -158,7 +158,7 @@
                                     <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
                                         <p>
                                             Dengan SData-HealthCare pasien akan lebih mudah mengakses data rekam medis
-                                            mereka, karena rekam medis ini terintegrasi antar rumah sakit
+                                            mereka karena rekam medis ini terintegrasi antar rumah sakit
                                         </p>
                                     </div>
                                 </li>
@@ -181,9 +181,9 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="section-title">
-                    <h2>Services</h2>
+                    <h2>Layanan</h2>
                     <p>
-                        SData-HealthCare memiliki banyak layanan, diantaranya adalah
+                        SData-HealthCare memiliki banyak layanan di antaranya adalah
                     </p>
                 </div>
 
@@ -204,7 +204,7 @@
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-file"></i></div>
                             <h4><a href="">Simplisity</a></h4>
-                            <p>Tampilan Simpel sehingga dapat digunakan dengan mudah </p>
+                            <p>Tampilan sederhana sehingga dapat digunakan dengan mudah </p>
                         </div>
                     </div>
 
@@ -221,7 +221,7 @@
                         data-aos-delay="400">
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-layer"></i></div>
-                            <h4><a href="">Secure</a></h4>
+                            <h4><a href="">Keamanan</a></h4>
                             <p>
                                 Data Rekam medis pasien aman dari orang yang tidak bertanggung jawab
                             </p>
@@ -239,12 +239,12 @@
 
                 <div class="row">
                     <div class="col-lg-9 text-center text-lg-start">
-                        <h3>Click To Join</h3>
-                        <p>Kami terbuka untuk Rumah Sakit Daerah kami juga menerima Rumah Sakit Swasta. Daftarkan Rumah
-                            Sakitmu Disini</p>
+                        <h3>Klik untuk Berganung</h3>
+                        <p>Kami terbuka untuk Rumah Sakit Daerah serta Rumah Sakit Swasta. Daftarkan Rumah
+                            Sakitmu Di Sini</p>
                     </div>
                     <div class="col-lg-3 cta-btn-container text-center">
-                        <a class="cta-btn align-middle" href="{{ route('register') }}">Click to Join</a>
+                        <a class="cta-btn align-middle" href="{{ route('register') }}">Klik untuk Bergabung</a>
                     </div>
                 </div>
 
@@ -267,7 +267,7 @@
                             Semarang <br>
                             Jawa Tengah<br>
                             Indonesia <br><br>
-                            <strong>Phone:</strong> +62 082145676133<br>
+                            <strong>Phone:</strong> +62 82145676133<br>
                             <strong>Email:</strong> info@sdata.com<br>
                         </p>
                     </div>
@@ -275,7 +275,7 @@
                     <span class="col-lg-3 "></span>
                     <div class="col-lg-3 col-md-6 footer-links float-end">
                         <h4>Our Social Networks</h4>
-                        <p>Kami ada pada banyak platofrm social media berikut</p>
+                        <p>Kami ada pada banyak platform social media berikut</p>
                         <div class="social-links mt-3">
                             <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                             <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
